@@ -1,0 +1,104 @@
+<!--suppress AngularUndefinedBinding -->  <!-- to fix a bug in webstorm -->
+<div class="editToolbar"   *ngIf="isVisible$ | async"  [style.left.px]="x" [style.top.px]="y"
+     (panstart)="onPanStart($event)" (panmove)="onPan($event)">
+<mat-card>
+ <!--  <mat-divider [vertical]="true"></mat-divider> -->
+  <div class="container">
+ <div #editToolbar>
+    <mat-toolbar>
+      <button   *ngIf= " (layerTypeEdit$ == 'Point' || layerTypeEdit$ == 'Multi'|| layerTypeEdit$ == 'MultiPoint') " mat-icon-button
+                (click)="drawingShapes('Point')" matTooltip="Start editing" aria-label= "Add point/marker" [ngClass]="actionActive['Point'] ? 'active': 'normal'">
+        <mat-icon>add_location</mat-icon>
+      </button>
+
+      <button mat-icon-button *ngIf="(layerTypeEdit$ == 'Line' || layerTypeEdit$ =='Multi' || layerTypeEdit$ == 'Polygon'|| layerTypeEdit$ == 'MultiPolygon'|| layerTypeEdit$ == 'MultiPolygonZ') "
+              (click)="drawingShapes('LineString')" matTooltip="Add Line/Linestring" aria-label="Add line" [ngClass]="actionActive['LineString'] ? 'active': 'normal'">
+        <mat-icon    svgIcon="add_line"></mat-icon>
+      </button>
+      <button *ngIf="(layerTypeEdit$ == 'Polygon' || layerTypeEdit$ == 'Multi'|| layerTypeEdit$ == 'MultiPolygon'|| layerTypeEdit$ == 'MultiPolygonZ') " mat-icon-button
+              (click)="drawingShapes('Polygon')" matTooltip="add Polygon (Area)" aria-label="Add polygon" [ngClass]="actionActive['Polygon'] ? 'active': 'normal'">
+        <mat-icon svgIcon="add_poly"></mat-icon>
+      </button>
+         <button mat-icon-button (click)="startEditAction('ModifyBox');showSymbolPanel(false);"
+                 matTooltip="Move element" aria-label="Select element(s) to move"
+              [ngClass]="actionActive['ModifyBox'] ? 'active': 'normal'" >
+        <mat-icon svgIcon="selectBoxFeature"></mat-icon>
+      </button>
+
+      <button *ngIf="(layerTypeRate$)" mat-icon-button (click)="startEditAction('Rating');showSymbolPanel(false);"
+              matTooltip="Rate element"
+              [ngClass]="actionActive['Rating'] ? 'active': 'normal'" >
+        <mat-icon svgIcon="ratingQuietArea"></mat-icon>
+      </button>
+      <button  *ngIf="(layerTypeRateMeasures$)" mat-icon-button (click)="startEditAction('RankingMeasures');showSymbolPanel(false);"
+               matTooltip="Rate Measures" aria-label= "Rate measures"
+              [ngClass]="actionActive['RankingMeasures'] ? 'active': 'normal'" >
+        <mat-icon svgIcon="ratingActionPlan"></mat-icon>
+      </button>
+
+      <!-- another approach <button mat-icon-button (click)="startEditAction('RatingMeasure');showSymbolPanel(false);" matTooltip="Rank measure"
+              [ngClass]="actionActive['RatingMeasure'] ? 'active': 'normal'" >
+        <mat-icon  svgIcon="ratingActionPlan"></mat-icon>
+      </button>  -->
+      <!--
+      <button mat-icon-button (click)="startEditAction('Copy');showSymbolPanel(false)" matTooltip="Copiar element(s)"
+              [ngClass]="actionActive['Copy'] ? 'active': 'normal'" >
+        <mat-icon>content_copy</mat-icon>
+      </button>
+      <button mat-icon-button (click)="startEditAction('Rotate');showSymbolPanel(false)" matTooltip="Rotate element(s)"
+              [ngClass]="actionActive['Rotate'] ? 'active': 'normal'" >
+        <mat-icon>rotate_right</mat-icon>
+      </button> -->
+      <button mat-icon-button (click)="startEditAction('MeasureLine');showSymbolPanel(false)"
+              matTooltip="Measure distance" aria-label= "Measure lineal distance"
+              [ngClass]="actionActive['MeasureLine'] ? 'active': 'normal'" >
+        <mat-icon svgIcon="measureLine"></mat-icon>
+      </button>
+      <button mat-icon-button (click)="startEditAction('MeasureArea');showSymbolPanel(false)"
+              matTooltip="Measure area" aria-label="Measure area"
+              [ngClass]="actionActive['MeasureArea'] ? 'active': 'normal'" >
+        <mat-icon svgIcon="measureArea"></mat-icon>
+      </button>
+
+      <button mat-icon-button (click)="startEditAction('Delete'); showSymbolPanel(false)"
+              aria-label="delete a element" matTooltip="Delete element"
+              [ngClass]="actionActive['Delete'] ? 'active': 'normal'">
+        <mat-icon>delete_forever</mat-icon>
+      </button>
+      <!-- <button mat-icon-button (click)="startEditAction('Identify');showSymbolPanel(false)"  aria-label="identify" matTooltip="Identify element"
+              [ngClass]="actionActive['Identify'] ? 'active': 'normal'">
+        <mat-icon svgIcon="identify"></mat-icon>
+      </button> -->
+      <!--<button mat-icon-button (click)="startEditAction('Search');showSymbolPanel(false)"  aria-label="identify" matTooltip="Search in map"
+              [ngClass]="actionActive['Search'] ? 'active': 'normal'">
+        <mat-icon>search</mat-icon>
+      </button> -->
+      <button mat-icon-button aria-label="Revert last edit" (click)="startEditAction('Undo');" matTooltip="Revert last edit">
+        <mat-icon>undo</mat-icon>
+      </button>
+      <button mat-icon-button (click)="showSymbolPanel(true)" matTooltip="Open list of symbols" aria-label="Open list of symbols"
+              [ngClass]="actionActive['showSymbols'] ? 'active': 'normal'">
+        <mat-icon>category</mat-icon>
+      </button>
+      <button [disabled]="stopSave" mat-icon-button (click)="saveLayer()"  aria-label="Save changes in active layer"
+      matTooltip ="Save changes in active layer">
+        <mat-icon>save_alt</mat-icon>
+      </button>
+      <button  [disabled]="stopSaveAll" mat-icon-button (click)="saveAllLayer()"  aria-label="Save all edits in all layers"
+               matTooltip ="Save all changes in all layers">
+        <mat-icon>save</mat-icon>
+      </button>
+
+
+     </mat-toolbar>
+   </div>
+
+    <div class="divClosing">
+      <span class = "spacer"></span>
+      <button class="closeIcon" mat-flat-button (click)="closeEditingToolbar()"  >
+        <mat-icon >close</mat-icon>
+      </button>
+    </div>
+  </div>
+</mat-card>
+</div>

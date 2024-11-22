@@ -1,0 +1,92 @@
+.editToolbar{
+  z-index: 200;
+  #width: 3%;  //3%
+  max-width: 45%;
+  margin-left: 30%;  //95%
+  margin-top:5%;
+  flex-direction: row;
+  position: absolute;
+  border-radius: 3px;
+  //background-color: #ad1457!important;   //same that primary color
+  background: white;
+}
+.editToolbar:hover {
+  cursor:pointer;
+}
+.mat-toolbar {
+  flex-direction: row;
+  height: 100%; //100% of the parent (div)
+  // the primary color of the theme
+  background: white;
+}
+.container{
+  display: flex;
+}
+/*.mat-toolbar :hover {
+  background-color: #f198b6;  //a lighter color to solve the confusion between active and hover
+}*/
+.closeIcon {
+  font-size: 0.8vw;
+  text-align: center;
+  vertical-align: middle !important;
+  min-width: 32px !important;
+  max-width: 32px !important;
+ // height:  1.5vw !important;
+  padding-top: 0;
+  margin-top: 0;
+  padding-right: 0;
+ }
+/*.closeIcon:hover {
+  background-color: #fff2e1 !important;
+} */
+.matCloseWrapper{
+  padding: 0 0 0 0;
+  width: 1.7vw !important;
+  height: 1.7vw !important;
+  // line-height: 18px !important;
+}
+
+.matCloseWrapper:hover{
+  background-color: transparent ;  //to focus the icons
+}
+.mat-card{
+  padding:1px 1px;
+}
+.divClosing{
+  float: right;
+  height: 100%;
+  max-width:  1.5vw;
+  padding-right: 20px;
+}
+.divClosing :hover {
+  background-color: transparent ;  //to avoid the pinky color
+}
+.mat-flat-button{
+  padding: 0 1px !important;
+}
+.editingTools{
+  float:left;
+  height: 100%;
+  background-color: white;
+}
+.spacer {
+  flex: 1 1 auto;
+}
+.active {
+  background: #e35183;   //green;
+}
+button:focus {
+  outline: none !important;
+}
+.mat-button-focus-overlay {
+  background-color: transparent!important;
+}
+.normal{
+  background: none;   //green;
+  outline: none;
+}
+
+
+.toolbarDivider {
+  background-color: #e35183;  // for testing --
+}

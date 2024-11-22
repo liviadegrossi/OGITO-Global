@@ -1,0 +1,12 @@
+{
+  "/graphql": {
+    "target": "https://example.org/graphql",
+    "secure": true,
+    "pathRewrite": {
+      "^/graphql": ""
+    },
+    "logLevel": "debug",
+    "changeOrigin": true
+  }
+
+}

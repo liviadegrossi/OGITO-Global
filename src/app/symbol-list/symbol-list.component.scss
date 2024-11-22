@@ -1,0 +1,47 @@
+// to remove the padding in mat-list
+:host ::ng-deep .mat-list-item-content {
+  padding: 0!important;
+}
+
+// to remove the padding on the text of the list
+:host ::ng-deep .mat-list-text {
+  padding: 0 5px !important;
+}
+.example-list{
+ // left: 70% !important;
+  margin-left: 30% !important; // to have at the same left than the editnig toolbar
+  max-width: 20%;
+  top: 22% !important;
+}
+
+.toolbarDivider {
+  padding-top: 5px !important;
+  color:darkred ;
+}
+
+.closeIcon :hover {
+  background-color: #e35183;  //to focus the icons
+}
+.canvasSymbol {
+ // background-color:  #fff2e1;
+  // border: 1px solid #fff2e1;
+  width: 3vw;  // responsive to the size of the VW
+  height: 1.5vw;
+}
+.symbolLabel {
+  font-size: 0.7vw;
+ }
+.symbol:hover {
+  background-color: #fff2e1;  //to focus the icons
+  cursor: pointer;
+}
+.active {
+  // background: #fff2e1;
+  background-color: #f198b6; //lighter than primary color
+}
+:host ::ng-deep .mat-card {
+  //padding: 0 !important;
+  padding: 0 10px;
+  //height:1.2vw !important;
+}
+
