@@ -1,21 +1,21 @@
 
-<div id="map" class="map" oncontextmenu="return false">
-  </div>
+<div id="map" class="map" oncontextmenu="return false"></div>
   <div id="popup" #popup class="ol-popup">
     <a href="#" #closer class="ol-popup-closer"></a>
     <div id="popup-content" #content>
       <img (load)="adjustMapView()" #popupImage>
     </div>
   </div>
+
   <div *ngIf="loadedWfsLayers">
-    <!--[groupLayers] = "groupsLayers"-->
-  <app-layer-panel   [groupLayers] = "groupsLayersSubject.asObservable()"
-                  (layerVisClick)="updateMapVisibleLayer($event)"
-  (editLayerClick)="updateEditingLayer($event)"  (groupLayerVisClick)="updateMapVisibleGroupLayer($event)"
-  (layersOrder) = "updateOrderGroupsLayers($event)"
-  (identifyLayerClick)="startIdentifying($event)"
-  (removeLayerClick) = "removeSessionLayer($event)">
-  </app-layer-panel>
+    <app-layer-panel [groupLayers] = "groupsLayersSubject.asObservable()"
+      (layerVisClick)="updateMapVisibleLayer($event)"
+      (editLayerClick)="updateEditingLayer($event)"  
+      (groupLayerVisClick)="updateMapVisibleGroupLayer($event)"
+      (layersOrder) = "updateOrderGroupsLayers($event)"
+      (identifyLayerClick)="startIdentifying($event)"
+      (removeLayerClick) = "removeSessionLayer($event)">
+    </app-layer-panel>
   </div>
 
 <!--defaul edit dialog-->
@@ -25,5 +25,6 @@
                     (formSubmitted) = "getFormData($event)"
                     [featureLayer] = "featureLayerForm"> <!--[questions]="formQuestions" -->  <!-- from parent to Child) -->
 </app-dynamic-form>
+
 <!--custiom meldingen dialog-->
 <app-edit-reporting (formSubmitted)="getFormData($event)"></app-edit-reporting>

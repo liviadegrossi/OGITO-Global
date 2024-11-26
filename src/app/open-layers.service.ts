@@ -117,8 +117,9 @@ export class OpenLayersService {
      */
     this.showEditToolbarSource.next(visible);
   }
-  updateQgsProjectUrl(url: any)
-  {
+
+  updateQgsProjectUrl(url: any) {
+    
     this.qgsProjectUrlSource.next(url);
   }
 

@@ -1216,8 +1216,7 @@ export class MapComponent implements OnInit, AfterViewInit, OnDestroy {
         }
         return layerStyle;
       },
-    });
-    // add the layer to the map
+    }); // add the layer to the map
 
     var fieldsToShow;
     if(showDefaultFields){

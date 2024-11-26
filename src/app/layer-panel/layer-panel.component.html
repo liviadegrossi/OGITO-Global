@@ -13,8 +13,8 @@
     </mat-card-title-group>
     <mat-divider class = "toolbarDivider"></mat-divider>
     <mat-accordion #groupsAccordion cdkDropList (cdkDropListDropped)="dropExpansion($event)">
+      <!-- add each group of layer to the layer panel -->
       <mat-expansion-panel *ngFor= "let group of sgroupLayers" cdkDrag>
-        <!--togglePosition='before'-->
         <mat-expansion-panel-header>
           <mat-panel-title>
             <mat-selection-list [id]="group.groupName">
@@ -41,6 +41,7 @@
                         </div>
                          <div class = 'selectLayer'>
                            <span class="spacer"></span>
+                           <!-- edit button right after the layer name -->
                           <button  *ngIf="layer.wfs || layer.sketch" mat-icon-button matTooltip="Edit Layer" aria-label="Start drawing"
                                   (click)="onEditLayerClick($event, layer, group)"
                                   [ngClass]="layer.onEdit ? 'activeAction': 'normal'">

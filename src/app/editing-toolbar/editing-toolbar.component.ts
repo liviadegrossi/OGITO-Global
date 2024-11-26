@@ -280,14 +280,13 @@ constructor(iconRegistry: MatIconRegistry, sanitizer: DomSanitizer, private open
     /** Updates the observable to show the editing toolbar
      *  @param visible: boolean
      */
-  this.isVisible$ = observableOf(visible);
-  // hide the symbol panel
-  if (!visible){
-   this.showSymbolPanel(false);
-  }
-  for (let key in this.actionActive ) {
-     if (true === this.actionActive[key])
-      {
+    this.isVisible$ = observableOf(visible);
+    // hide the symbol panel
+    if (!visible) {
+      this.showSymbolPanel(false);
+    }
+    for (let key in this.actionActive ) {
+      if (true === this.actionActive[key]) {
         this.actionActive[key] = !this.actionActive[key];
       }
     }

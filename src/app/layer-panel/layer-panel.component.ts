@@ -113,7 +113,7 @@ constructor(iconRegistry: MatIconRegistry, sanitizer: DomSanitizer, private open
       */
       $event.preventDefault();
       $event.stopImmediatePropagation();
-      // not layer active
+      // layer was not active
       if (this.layerActive === null){
         // set the clicked layer as active
         this.layerActive = layer.layerName;
@@ -133,7 +133,7 @@ constructor(iconRegistry: MatIconRegistry, sanitizer: DomSanitizer, private open
           // stop editing
           layer.onEdit = false;
           this.openLayersService.updateShowEditToolbar(false);
-          this.openLayersService.raiseSymbolPanelClosed(true)
+          this.openLayersService.raiseSymbolPanelClosed(true);
           this.editLayerClick.emit(null);
           return;
         }
